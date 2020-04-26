@@ -24,6 +24,7 @@ class ofApp : public ofBaseApp{
 	private:
 	  void load_shader();
 		void enumerate();
+		void next();
 
 		ofShader shader;
 		ofTrueTypeFont font;
@@ -35,6 +36,7 @@ class ofApp : public ofBaseApp{
 		size_t selected_index = 0;
 		size_t no_shaders;
 		float mouseX;
+		float lastChange = 0;
 
 		glm::vec2 rectSize;
 };

@@ -47,7 +47,9 @@ void ofApp::enumerate() {
 
 //--------------------------------------------------------------
 void ofApp::update(){
-
+	if (ofGetElapsedTimef() - lastChange > 120.0f) {
+		next();
+	}
 }
 
 //--------------------------------------------------------------
@@ -77,7 +79,7 @@ void ofApp::draw() {
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
 	switch (key) {
-		case ' ': selected_index = (selected_index + 1) % no_shaders; load_shader(); break;
+		case ' ': next(); break;
 		case 'r': load_shader(); break;
 		case OF_KEY_RETURN: ofToggleFullscreen(); break;
 	}
@@ -85,6 +87,12 @@ void ofApp::keyPressed(int key){
 
 void ofApp::load_shader() {
 	valid_load = shader.load("basic.vert", shaders[selected_index]);
+	lastChange = ofGetElapsedTimef();
+}
+
+void ofApp::next() {
+	selected_index = (selected_index + 1) % no_shaders;
+	load_shader();
 }
 
 //--------------------------------------------------------------
